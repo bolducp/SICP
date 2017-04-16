@@ -30,3 +30,6 @@
   (< (abs (- guess old-guess)) 0.001))
 
 (sqrt 9999999999998)
+(sqrt 0.001)
+
+; Yes, this does seem to improve for both very large and very small numbers.
