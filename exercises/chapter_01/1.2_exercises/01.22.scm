@@ -46,4 +46,33 @@
   (display " *** ")
   (display elapsed-time))
 
-(timed-prime-test 7)
+;(timed-prime-test 7)
+
+(define (search-for-primes start end)
+  (cond ((<= start end)
+    (begin
+      (timed-prime-test start)
+      (search-for-primes (+ start 1) end)))
+    (else (display "done"))
+  ))
+
+
+(define (search-for-primes-num-primes minimum num-primes)
+  (cond ((= num-primes 0) (display "done"))
+        ((prime? minimum)
+          (begin
+            (display minimum)
+            (timed-prime-test minimum)
+            (search-for-primes-num-primes (+ minimum 2) (- num-primes 1))))
+        ((even? minimum) (search-for-primes-num-primes (+ minimum 1) num-primes))
+        (else (search-for-primes-num-primes (+ minimum 2) num-primes))
+))
+
+
+(search-for-primes-num-primes 100 3)
+(display newline)
+(search-for-primes-num-primes 1000000 3)
+(display newline)
+(search-for-primes-num-primes 100000000000 3)
+(display newline)
+(search-for-primes-num-primes 10000000000000 3)
